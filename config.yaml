@@ -1,0 +1,52 @@
+test:
+  name: simple
+  description: This is an example benchmark for caliper
+  clients:
+    type: local
+    number: 5
+  rounds:
+  - label: open
+    txMode:
+      type: real-time
+    txNumber:
+    - 5000
+    - 5000
+    - 5000
+    rateControl:
+    - type: fixed-rate
+      opts: 
+        tps: 100
+    - type: fixed-rate
+      opts:
+        tps: 200
+    - type: fixed-rate
+      opts:
+        tps: 300
+    arguments:
+      money: 10000
+    callback: benchmark/simple/open.js
+  - label: query
+    txNumber:
+    - 5000
+    - 5000
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 300
+    - type: fixed-rate
+      opts:
+        tps: 400
+    callback" : benchmark/simple/query.js
+monitor:
+  type:
+  - docker
+  - process
+  docker:
+    name:
+    - peer0.org1.example.com
+    - http://192.168.1.100:2375/orderer0.example.com
+  process:
+  - command: node
+    arguments: local-client.js
+    multiOutput: avg
+  interval: 1
