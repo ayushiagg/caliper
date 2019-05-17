@@ -44,7 +44,7 @@ monitor:
   docker:
     name:
     - peer0.org1.example.com
-    - http://192.168.1.100:2375/orderer0.example.com
+    - http://192.168.1.100:2375/orderer.example.com
   process:
   - command: node
     arguments: local-client.js
