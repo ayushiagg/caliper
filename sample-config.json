@@ -99,8 +99,8 @@
     }
   },
   "info" : {
-    "Version": "1.4.0",
-    "Size": "2 Orgs with 1 Peer",
+    "Version": "1.4.1",
+    "Size": "2 Orgs with 2 Peers",
     "Orderer": "solo",
     "Distribution": "Single Host"
   }
