@@ -253,6 +253,7 @@ function buildChaincodeProposal(client, chaincode, upgrade, transientMap, endors
         chaincodeVersion: chaincode.version,
         fcn: 'init',
         args: chaincode.init || [],
+        // args: '["init", "a", "100", "b", "200"]',
         txId: tx_id,
         'endorsement-policy': endorsement_policy
     };
@@ -369,7 +370,10 @@ async function instantiate(chaincode, endorsement_policy, upgrade){
         tx_id = request.txId;
         results = await channel.sendUpgradeProposal(request);
     } else {
+	//Instantiate chaincode
+	commLogger.info("Execution in this path? ELSE");
         let request = buildChaincodeProposal(client, chaincode, upgrade, transientMap, endorsement_policy);
+	commLogger.info("Request Proposal : Chaincode ID - " + request.chaincodeId + " ; Chaincode Args - " + request.args + " ; Chaincode path - " + request.path);
         tx_id = request.txId;
         results = await channel.sendInstantiateProposal(request);
     }
@@ -382,6 +386,7 @@ async function instantiate(chaincode, endorsement_policy, upgrade){
         if (proposalResponses && proposalResponses[i].response && proposalResponses[i].response.status === 200) {
             commLogger.info(type +' proposal was good');
         } else {
+	    commLogger.info("Is this the point of failure?");
             commLogger.warn(type +' proposal was bad: ' + proposalResponses[i]);
             all_good = false;
         }
