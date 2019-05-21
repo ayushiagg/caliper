@@ -56,7 +56,9 @@ class Fabric extends BlockchainInterface {
     async installSmartContract() {
         try {
             await impl_install.run(this.configPath);
+            await CaliperUtils.sleep(5000);
             await impl_instantiate.run(this.configPath);
+            await CaliperUtils.sleep(5000);
         } catch (err) {
             commLogger.error(`Fabric chaincode install failed: ${(err.stack ? err.stack : err)}`);
             throw err;

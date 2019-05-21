@@ -34,7 +34,7 @@ async function run(config_path) {
     }
 
     try {
-        commLogger.info('Instantiating chaincodes...');
+        commLogger.info('Instantiating chaincodes...1');
         for (let chaincode of chaincodes) {
             await e2eUtils.instantiateChaincode(chaincode, policy, false);
             commLogger.info(`Instantiated chaincode ${chaincode.id} successfully`);
