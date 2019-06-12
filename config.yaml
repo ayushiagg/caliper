@@ -9,33 +9,33 @@ test:
     txMode:
       type: real-time
     txNumber:
-    - 5000
-    - 5000
-    - 5000
+    - 5
+    - 6
+    - 9
     rateControl:
     - type: fixed-rate
       opts: 
-        tps: 100
+        tps: 1
     - type: fixed-rate
       opts:
-        tps: 200
+        tps: 2
     - type: fixed-rate
       opts:
-        tps: 300
+        tps: 3
     arguments:
       money: 10000
     callback: benchmark/simple/open.js
   - label: query
     txNumber:
-    - 5000
-    - 5000
+    - 9
+    - 10
     rateControl:
     - type: fixed-rate
       opts:
-        tps: 300
+        tps: 1
     - type: fixed-rate
       opts:
-        tps: 400
+        tps: 1
     callback" : benchmark/simple/query.js
 monitor:
   type:
